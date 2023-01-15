@@ -14,10 +14,6 @@
 # 3. Forest = Set of trees.
 
 
-from time import time
-from tracemalloc import start
-
-
 def dfs(node):
     global color, back_edge, curr_time, start_time, finish_time, forward_edge, cross_edge, tree_edge
     color[node] = 'grey'
@@ -67,7 +63,7 @@ if __name__ == '__main__':
         if color[vertice] == 'white':
             dfs(vertice)
 
-    if back_edge > 1:
+    if back_edge >= 1:
         print('Cycle detected')
 
     print(back_edge, forward_edge, cross_edge, tree_edge)

@@ -47,27 +47,26 @@ def delete(root, key):
         return root
 
     if root.val < key:
-        root.left = delete(root.right, key)
+        root.right = delete(root.right, key)
     elif root.val > key:
-        root.right = delete(root.left, key)
+        root.left = delete(root.left, key)
     else:
-        if not root.left:
+        if not root.left and not root.right:
+            return None
+        elif not root.left:
             temp = root.right
             root.right = None
             return temp
 
-        if not root.right:
+        elif not root.right:
             temp = root.left
             root.left = None
             return temp
-
-        successor = find_successor(root)
-
-        root.key = successor.key
-
-        delete(root.right, successor.key)
-
-        return root
+        else:
+            successor = find_successor(root)
+            root.val = successor.val
+            delete(root.right, successor.val)
+            return root
 
 
 if __name__ == '__main__':
